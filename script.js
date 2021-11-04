@@ -4,31 +4,64 @@ countButton.addEventListener("click", function(e){
     e.preventDefault()
 })
 
+let eraseButton = document.getElementById("eraseButton")
+
+eraseButton.addEventListener("click", function(e){
+  e.preventDefault()
+})
+
+
+let showAnswer = document.getElementById("answerBox")
+let genderMale = document.getElementById("radioMan").checked 
+let genderFemale = document.getElementById("radioWoman").checked 
+
+let howOldIs = document.getElementById("inputAge")
+let howMuchHeight = document.getElementById("inputHeight")
+let howMuchWeight = document.getElementById("inputWeight")
+
+let whatIsChecked = document.getElementsByName("level")
+
+let minimumLevel = document.getElementById("minimumLevel")
+let lowLevel = document.getElementById("lowLevel")
+let mediumLevel = document.getElementById("mediumLevel")
+let highLevel = document.getElementById("highLevel")
+let veryHighLevel = document.getElementById("veryHighLevel")
+
+let firstResult = document.getElementById("firstResult")
+let secondResult = document.getElementById("secondResult")
+let thirdResult = document.getElementById("thirdResult")
+
+let genderCalories = 0
+let calories = 0
+let regex=/^[0-9]+$/;
+
 function countBtn(){
 
+
     console.log("clicked")
-    let showAnswer = document.getElementById("answerBox")
-    let genderMale = document.getElementById("radioMan").checked 
-    let genderFemale = document.getElementById("radioWoman").checked 
+    howOldIs.style.borderColor = "black";
+    howMuchHeight.style.borderColor = "black";
+    howMuchWeight.style.borderColor = "black";
+    
 
-    let howOldIs = document.getElementById("inputAge").value
-    let howMuchHeight = document.getElementById("inputHeight").value 
-    let howMuchWeight = document.getElementById("inputWeight").value 
+    if (!howOldIs.value.match(regex)){
+      console.log("how old is true")
+      document.getElementById("inputAge").style.borderColor = "red";
+    }
 
-    let whatIsChecked = document.getElementsByName("level")
+    if (!howMuchHeight.value.match(regex)){
+      console.log("how old is true")
+      document.getElementById("inputHeight").style.borderColor = "red";
+    }
 
-    let minimumLevel = document.getElementById("minimumLevel")
-    let lowLevel = document.getElementById("lowLevel")
-    let mediumLevel = document.getElementById("mediumLevel")
-    let highLevel = document.getElementById("highLevel")
-    let veryHighLevel = document.getElementById("veryHighLevel")
+    if (!howMuchWeight.value.match(regex)){
+      console.log("how old is true")
+      document.getElementById("inputWeight").style.borderColor = "red";
+    }
 
-    let firstResult = document.getElementById("firstResult")
-    let secondResult = document.getElementById("secondResult")
-    let thirdResult = document.getElementById("thirdResult")
-
-    let genderCalories = 0
-    let calories = 0
+    if(!howOldIs.value.match(regex) || !howMuchHeight.value.match(regex) || !howMuchWeight.value.match(regex)){
+      return
+    }
 
 if(genderMale){
     console.log("М")
@@ -40,11 +73,11 @@ if(genderMale){
     console.log(genderCalories)
 }
 
-console.log(howOldIs)
-console.log(howMuchHeight)
-console.log(howMuchWeight)
+console.log(howOldIs.value)
+console.log(howMuchHeight.value )
+console.log(howMuchWeight.value)
 
-calories = ((howMuchWeight * 10) + (6.25 * howMuchHeight) - (5 * howOldIs) + genderCalories)
+calories = ((howMuchWeight.value * 10) + (6.25 * howMuchHeight.value) - (5 * howOldIs.value) + genderCalories)
 console.log(calories)
 
 
@@ -91,4 +124,35 @@ window.scroll({
   document.querySelector('.answer-box').scrollIntoView({ 
     behavior: 'smooth' 
   });
+}
+
+
+
+function eraseBtn(){
+
+  console.log("clicked")
+
+  howOldIs.style.borderColor = "black";
+  howMuchHeight.style.borderColor = "black";
+  howMuchWeight.style.borderColor = "black";
+  showAnswer.style.display = "none";
+  window.scroll({
+    top: 2500, 
+    left: 0, 
+    behavior: 'smooth' 
+  });
+  
+  window.scrollBy({ 
+    top: 100, 
+    left: 0, 
+    behavior: 'smooth' 
+  });
+  document.querySelector('.container').scrollIntoView({ 
+    behavior: 'smooth' 
+  });
+
+  howOldIs.value=" "
+  howMuchHeight.value=" "
+  howMuchWeight.value=" "
+
 }
